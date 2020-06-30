@@ -7,7 +7,7 @@ import AuthenticationService from './AuthenticationService.js'
 class HeaderComponment extends Component {
     render() {
         const isUserLoggedIn = AuthenticationService.isUserLoggedIn()
-        console.log(isUserLoggedIn)
+        // console.log(isUserLoggedIn)
 
         return (
             <nav className="navbar navbar-expand-md navbar-dark bg-dark">
