@@ -1,6 +1,6 @@
-package com.todosapp.rest.webservices.restfulwebservices;
+package com.todosapp.rest.webservices.restfulwebservices.helloworld;
 
-import javax.websocket.server.PathParam;
+// import javax.websocket.server.PathParam;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +26,13 @@ public class HelloWorldController {
     // hellp-world-bean
     @GetMapping(path = "/hello-world-bean")
     public HelloWorldBean helloWorldBean(){
-        return new HelloWorldBean("Hello World");
+        return new HelloWorldBean("Hello World Bean");
     }
 
     // hello-world/path-variable/admin
     @GetMapping(path = "/hello-world/path-variable/{name}")
     public HelloWorldBean helloWorldBeanVariable(@PathVariable String name){
-        return new HelloWorldBean(String.format("Hello World, %s", name));
+        throw new RuntimeException("Something went wrong");
+        // return new HelloWorldBean(String.format("Hello World, %s", name));
     }
 }
