@@ -35,7 +35,7 @@ class LoginComponent extends Component {
             this.setState({ showSuccessMessage: false })
             this.setState({ hasLoginFailed: true })
         }
-        console.log(this.state);
+        // console.log(this.state);
     }
 
     render() {
