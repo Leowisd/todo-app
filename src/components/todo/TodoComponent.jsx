@@ -10,7 +10,7 @@ class TodoComponent extends Component{
         
         this.state = {
             id : this.props.match.params.id,
-            description: 'Learn Forms Now',
+            description: '',
             targetDate: moment(new Date()).format('YYYY-MM-DD')
         }
 
@@ -19,6 +19,10 @@ class TodoComponent extends Component{
     }
 
     componentDidMount(){
+        if (this.state.id === '-1'){
+            return
+        }
+
         let username = AuthenticationService.getLoggedInUserName()
         TodoDataService.retrieveTodo(username, this.state.id)
         .then(
@@ -30,7 +34,25 @@ class TodoComponent extends Component{
     }
 
     onSubmit(values){
-        console.log(values)
+        let username = AuthenticationService.getLoggedInUserName()
+
+        let todo = {
+            id: this.state.id,
+            description: values.description,
+            targetDate: values.targetDate
+        }
+
+        if (this.state.id === '-1'){
+            TodoDataService.createTodo(username, todo)
+            .then(
+                () => {this.props.history.push('/todos')})    
+        }
+        else{
+            TodoDataService.updateTodo(username, this.state.id, todo)
+            .then(
+                () => {this.props.history.push('/todos')})  
+        }
+        
     }
 
     validate(values){
@@ -69,11 +91,11 @@ class TodoComponent extends Component{
                                     <ErrorMessage name="targetDate" component="div" className="alert alert-warning"/>
                                     <fieldset className="form-group">
                                         <label htmlFor="">Description</label>
-                                        <Field className="form-control" type="text" name="description"/>
+                                        <Field className="form-control col-md-5 mx-auto" type="text" name="description"/>
                                     </fieldset>
                                     <fieldset className="form-group">
                                         <label htmlFor="">Target Date</label>
-                                        <Field className="form-control" type="date" name="targetDate"/>
+                                        <Field className="form-control col-md-5 mx-auto" type="date" name="targetDate"/>
                                     </fieldset>
                                     <button className="btn btn-success" type="submit"> Save </button>
                                 </Form>
