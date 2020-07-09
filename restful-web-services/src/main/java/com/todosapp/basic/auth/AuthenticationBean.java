@@ -1,4 +1,4 @@
-package com.todosapp.rest.webservices.restfulwebservices.basic.auth;
+package com.todosapp.basic.auth;
 
 public class AuthenticationBean {
     private String message;
