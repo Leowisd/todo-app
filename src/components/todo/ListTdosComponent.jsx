@@ -72,8 +72,8 @@ class ListTdosComponent extends Component {
                         <thead>
                             <tr>
                                 <th>description</th>
-                                <th>Is Completed?</th>
                                 <th>Target Date</th>
+                                <th>Is Completed?</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -84,8 +84,8 @@ class ListTdosComponent extends Component {
                                     todo =>
                                         <tr key={todo.id}>
                                             <td>{todo.description}</td>
-                                            <td>{todo.isDone.toString()}</td>
                                             <td>{moment(todo.targetDate).format('YYYY-MM-DD')}</td>
+                                            <td>{todo.isDone.toString()}</td>
                                             <td><button className="btn btn-success" onClick={() => this.updateTodoClicked(todo.id)}>Edit</button></td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td>
                                         </tr>
